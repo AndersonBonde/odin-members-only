@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= data.title %></title>
+    <link rel='stylesheet' href='/stylesheets/form.css' />
+    <script src="/javascripts/checkPassword.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1><%= data.title %></h1>
+      <form action="/signup" method="post">
+        <div class="form_item">
+          <label for="firstname">First Name</label>
+          <input type="text" name="firstname" id="firstname" value="<%= !data.user || undefined === data.user.firstname ? '' : data.user.firstname %>" required>
+        </div>
+        <div class="form_item">
+          <label for="lastname">Last Name</label>
+          <input type="text" name="lastname" id="lastname" value="<%= !data.user || undefined === data.user.lastname ? '' : data.user.lastname %>" required>
+        </div>
+        <div class="form_item">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" value="<%= !data.user || undefined === data.user.email ? '' : data.user.email %>" required>
+        </div>
+        <div class="form_item">
+          <label for="password">Password<span class="password_message"></span></label>
+          <input type="password" name="password" id="password" required>
+        </div>
+        <div class="form_item">
+          <label for="password_confirm">Confirm your password</label>
+          <input type="password" name="password_confirm" id="password_confirm" required>
+        </div>
+
+        <button type="submit">Create Account</button>
+      </form>
+
+      <p>
+        Already have an account?
+        <a href="/login">Login</a>
+      </p>
+
+      <% if (data.errors) { %>
+        <ul style="margin-top: 2rem; list-style: none;">
+          <% data.errors.forEach((error) => { %>
+            <li style="background-color: tomato; margin-bottom: 4px;"><%= error.msg %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+    </div>
+  </body>
+</html>

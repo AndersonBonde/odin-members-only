@@ -1,0 +1,76 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: min(1024px, 100vw - 4rem);
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: lightgray;
+  border-radius: 12px;
+}
+
+.container h1 {
+  margin-right: auto;
+}
+
+.container > header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.link_button,
+.admin_delete_button {
+  padding: 8px 12px;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.link_button:hover,
+.admin_delete_button:hover {
+  outline: 1px solid black;
+  cursor: pointer;
+}
+
+.admin_actions {
+  margin-top: 1rem;
+}
+
+.admin_delete_button {
+  background-color: tomato; 
+  color: white;
+  border: none;
+}
+
+.online_as {
+  display: flex;
+  gap: 4px;
+}
+
+.membership_status {
+  color: gray;
+}
+
+.message {
+  background-color: white;
+  padding: 1rem;
+  margin-block: 1rem;
+  border-radius: 12px;
+}
+
+.message > header {
+  margin-bottom: 1rem;
+}
+
+.member_info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px;
+}

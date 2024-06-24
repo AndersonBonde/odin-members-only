@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= data.title %></title>
+    <link rel='stylesheet' href='/stylesheets/index.css' />
+    <script src="/javascripts/confirmMessageDelete.js" defer></script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1><%= data.title %></h1>
+        <% if (!data.user) { %>
+          <a href="/signup" class="link_button">Sign Up</a>
+          <a href="/login" class="link_button">Login</a>
+        <% } else { %>
+          <% if (data.user && 'guest' == data.user.membership) { %>
+            <a href="join_membership" class="link_button">Become a member</a>
+          <% } %>
+          <a href="/logout" class="link_button">Logout</a>
+        <% } %>
+      </header>
+
+      <!-- Basic user info if authenticated -->
+      <% if (data.user) { %>
+        <div class="online_as">
+          <p>Online as:</p>
+          <p><%= data.user.email %></p>
+          <span class="membership_status"><%= data.user.membership %></span>
+          <% if (data.user.admin) { %>
+            <span class="admin_status">admin</span>
+          <% } %>
+        </div>
+      <% } %>
+
+      <div class="messages_wrapper">
+        <% data.messages.forEach((message) => { %>
+          <div class="message">
+            <header>
+              <!-- Show member info if user is a membership == 'member' -->
+              <% if (data.user && 'member' == data.user.membership) { %>
+                <div class="member_info">
+                  <span><%= `${message.author.firstname} ${message.author.lastname}` %></span>
+                  <span><%= message.timestamp_formatted %></span>
+                </div>
+              <% } %>
+              <h2><%= message.title %></h2>
+            </header>
+            <p>
+              <%= message.text %>
+            </p>
+            <% if (data.user && data.user.admin) { %>
+              <div class="admin_actions">
+                <form action="/delete_message" method="post">
+                  <input type="hidden" name="messageid" value="<%= message._id %>">
+                  <button type="submit" class="admin_delete_button">Delete</button>
+                </form>
+              </div>
+            <% } %>
+          </div>
+        <% }) %>
+      </div>
+
+      <!-- Display new message button(link) only for authenticated users. -->
+      <% if (data.user) { %>
+        <a href="/new_message" class="link_button">Add new message</a>
+      <% } %>
+    </div>
+  </body>
+</html>

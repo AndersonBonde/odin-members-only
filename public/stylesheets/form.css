@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: min(1024px, 100vw - 4rem);
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: lightgray;
+  border-radius: 12px;
+}
+
+/*
+--- Form 
+*/
+
+form {
+  margin-block: 2rem;
+}
+
+.form_item label {
+  display: block;
+  padding-block: 6px;
+}
+
+.form_item input,
+.form_item textarea {
+  padding: 6px;
+  width: 100%;
+  border: none;
+}
+
+.container form button[type = 'submit'] {
+  margin-top: 2rem;
+  padding: 8px 12px;
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  border: none;
+  border-radius: 6px;
+}
+
+.container form button[type = 'submit']:hover {
+  outline: 1px solid black;
+  cursor: pointer;
+}
+
+/*
+  --- Utility
+*/
+
+.valid_password {
+  background-color: rgba(172, 255, 47, 0.726);
+}
+
+.invalid_password {
+  background-color: rgba(255, 99, 71, 0.692);
+}
